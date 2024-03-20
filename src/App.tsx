@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import React, { useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
+import Cookies from 'js-cookie';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import DashboardPage from './pages/DashboardPage';
+
+const AutoRedirect = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    // 只有在访问登录或注册页面时，如果检测到 token，则重定向到 dashboard
+    if (token && (location.pathname === '/login' || location.pathname === '/register')) {
+      navigate('/dashboard');
+    }
+  }, [navigate, location.pathname]);
+
+  return null;
+};
+
+const ProtectedRoute = ({ children }) => {
+  const location = useLocation();
+  const token = Cookies.get('token');
+
+  if (!token) {
+    // 如果没有 token，则重定向到登录页面，并传递当前尝试访问的页面路径作为参数（可选）
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <AutoRedirect />
+      <Routes>
+        {/* 根路径自动重定向到登录页 */}
+        <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/dashboard" 
+               element={
+                  <ProtectedRoute>
+                    <DashboardPage />
+                  </ProtectedRoute>
+                }
+        />
+        {/* 更多的路由 */}
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
