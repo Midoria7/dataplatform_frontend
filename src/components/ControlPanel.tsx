@@ -12,7 +12,7 @@ const ControlPanel: React.FC = () => {
     <div className="w-[260px] flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold mb-4">云台控制</h2>
       <div className="relative">
-        <div className="flex items-center justify-center w-48 h-48 rounded-full bg-gradient-to-r from-gray-600 to-gray-900 border-4 border-gray-200 shadow-xl">
+        <div className="flex items-center justify-center w-48 h-48 rounded-full bg-gradient-to-r from-gray-600 to-gray-900 border-4 border-gray-200 shadow-xl crossed-circle">
             <button onClick={() => handleDirection('up')} className="absolute top-4 left-20 btn btn-circle btn-sm text-black">
               <FontAwesomeIcon icon={faArrowUp} />
             </button>
