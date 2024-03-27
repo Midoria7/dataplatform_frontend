@@ -21,9 +21,8 @@ const LoginPage: React.FC = () => {
   // 处理登录表单提交
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // 防止表单默认提交行为
-    // 发送登录请求到您的API
     try {
-      const response = await fetch('http://127.0.0.1:4523/m1/4194391-0-default/user/login', { //API 请求地址？
+      const response = await fetch('http://127.0.0.1:4523/m1/4194391-0-default/auth/login', { //API 请求地址？
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
