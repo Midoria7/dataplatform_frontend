@@ -17,7 +17,6 @@ const LoginPage: React.FC = () => {
 
     return () => clearInterval(intervalId);
   }, []);
-
   // 处理登录表单提交
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // 防止表单默认提交行为
@@ -80,8 +79,8 @@ const LoginPage: React.FC = () => {
               <div>
                 <label htmlFor="password" className="sr-only">密码</label>
                 <input id="password" name="password" type="password" autoComplete="current-password" required 
-                       minLength="8"
-                       maxLength="20"
+                       minLength={8}
+                       maxLength={20}
                        className="appearance-none rounded-none relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                        placeholder="密码" value={password} 
                        onChange={e => setPassword(e.target.value)} />

@@ -1,0 +1,26 @@
+.circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 50px auto;
+}
+
+.sector-odd {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path:polygon(50% 50%, 0 0, 0 50%);      
+    background-color: grey;
+    border-radius: 50%;
+}
+
+.sector-even {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path:polygon(50% 50%, 0 0, 0 50%);   
+    background-color: rgb(59, 59, 59);
+    border-radius: 50%;
+}
+

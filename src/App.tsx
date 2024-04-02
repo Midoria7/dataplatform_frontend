@@ -34,7 +34,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (!token) {
     // 如果没有 token，则重定向到登录页面，并传递当前尝试访问的页面路径作为参数（可选）
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    //return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   return children;
