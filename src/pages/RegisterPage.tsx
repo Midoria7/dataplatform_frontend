@@ -12,7 +12,7 @@ const RegisterPage: React.FC = () => {
     event.preventDefault(); // 防止表单默认提交行为
 
     try {
-      const response = await fetch('http://127.0.0.1:4523/m1/4194391-0-default/user/signup', {
+      const response = await fetch('http://127.0.0.1:4523/m1/4194391-0-default/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

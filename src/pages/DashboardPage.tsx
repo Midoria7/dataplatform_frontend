@@ -8,13 +8,6 @@ import UserProfileDropdown from '../components/UserProfileDropdown';
 import DataInfo from '../components/DataInfo';
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    Cookies.remove('token');
-    navigate('/login');
-  };
-
   return (
     <div className="bg-gray-100 min-h-screen p-5">
       <div className="max-w-6xl mx-auto"> 
