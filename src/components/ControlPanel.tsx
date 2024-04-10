@@ -21,7 +21,7 @@ const Circle = () => {
             position: 'absolute', 
             top: '50%', 
             left: '15%', 
-            transform: `translate(-50%, -215%) rotate(${i - 90 + 20}deg)`, 
+            transform: `translate(-50%, -215%) rotate(${-67.5}deg)`, 
             filter: 'drop-shadow(0.8px 0.8px 0.8px rgba(59, 59, 59, 0.6))', 
             userSelect: 'none' // 禁止选中
           }}/>
