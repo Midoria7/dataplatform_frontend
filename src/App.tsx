@@ -12,6 +12,7 @@ import Cookies from 'js-cookie';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const AutoRedirect = () => {
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ function App() {
                   </ProtectedRoute>
                 }
         />
-        {/* 更多的路由 */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

@@ -1,13 +1,32 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faArrowLeft, faArrowRight, faArrowDown, faSearchPlus, faSearchMinus } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUp, faSearchPlus, faSearchMinus } from '@fortawesome/free-solid-svg-icons';
 import './circle.css';
 
 const Circle = () => {
     const sectors = [];
+
+    const handleSectorClick = (index) => {
+        console.log(`Sector ${index} clicked`);
+    };
+
     for (let i = 0; i < 8; i++) {
       const colorClass = i % 2 === 0 ? "sector-even" : "sector-odd";
-      sectors.push(<div key={i} className={`${colorClass}`} style={{ transform: `rotate(${i * 45 +22.5}deg)` }} ><FontAwesomeIcon icon={faArrowUp} color="blue"/></div>);
+      sectors.push(
+        <div key={i} className={`${colorClass}`} 
+            style={{ transform: `rotate(${i * 45 + 22.5}deg)` }}
+            onClick={() => handleSectorClick(i)}
+            >
+          <FontAwesomeIcon icon={faArrowUp} color="white" style={{ 
+            position: 'absolute', 
+            top: '50%', 
+            left: '15%', 
+            transform: `translate(-50%, -215%) rotate(${i - 90 + 20}deg)`, 
+            filter: 'drop-shadow(0.8px 0.8px 0.8px rgba(59, 59, 59, 0.6))', 
+            userSelect: 'none' // 禁止选中
+          }}/>
+        </div>
+      );
     }
   
     return (
@@ -15,7 +34,9 @@ const Circle = () => {
         {sectors}
       </div>
     );
-  };
+};
+
+
 const ControlPanel: React.FC = () => {
     // 添加您的控制逻辑函数
     const handleDirection = (direction: string) => {
