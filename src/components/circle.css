@@ -25,7 +25,7 @@
 }
 
 .sector-even {
-    background-image: linear-gradient(rgb(59, 59, 59), rgb(85, 85, 85));
+    background-image: linear-gradient(rgb(83, 83, 83), rgb(85, 85, 85));
 }
 
 .sector-odd:hover, .sector-even:hover {
@@ -34,6 +34,5 @@
 
 .sector-odd:active, .sector-even:active {
     /* 缩小元素尺寸给予"按下去"的感觉 */
-    transform: scale(0.5);
-    box-shadow: 0 2px 5px rgba(112, 112, 112, 0.2) inset;
+    box-shadow: 5px 5px 10px rgba(71, 71, 71, 0.2) inset;
 }
