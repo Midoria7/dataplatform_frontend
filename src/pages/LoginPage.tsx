@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [currentImage, setCurrentImage] = useState(1);
   const imageCount = 3;
@@ -21,22 +21,17 @@ const LoginPage: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // 防止表单默认提交行为
     try {
-      const response = await fetch('http://127.0.0.1:4523/m1/4194391-0-default/auth/login', { //API 请求地址？
+      const response = await fetch('http://localhost:5000/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ phone, password }),
+        body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
 
       if (response.ok) {
-        // 使用Cookies保存登录状态
-        Cookies.set('token', data.data.token, { expires: 7 }); // Cookie有效期为7天
-        Cookies.set('uid', data.data.uid, { expires: 7 });
-        Cookies.set('username', data.data.username, { expires: 7 });
-        
-        // 重定向到/dashboard页面
+        Cookies.set('token', data.token, { expires: 7 }); // Cookie有效期为7天
         navigate('/dashboard');
       } else {
         alert(data.msg);
@@ -69,16 +64,15 @@ const LoginPage: React.FC = () => {
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
                 <label htmlFor="phone-number" className="sr-only">手机号</label>
-                <input id="phone-number" name="phone" type="tel" autoComplete="tel" required 
-                       pattern='^1[3456789]\d{9}$'
-                       className="appearance-none rounded-none relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-                       placeholder="手机号" value={phone} 
-                       onChange={e => setPhone(e.target.value)} />
+                <input id="email" name="email" type="email" autoComplete="email" required 
+                      className="appearance-none rounded-none relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
+                      placeholder="电子邮件" value={email} 
+                      onChange={e => setEmail(e.target.value)} />
               </div>
               <div>
                 <label htmlFor="password" className="sr-only">密码</label>
                 <input id="password" name="password" type="password" autoComplete="current-password" required 
-                       minLength={8}
+                       minLength={4}
                        maxLength={20}
                        className="appearance-none rounded-none relative block w-full px-4 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                        placeholder="密码" value={password} 

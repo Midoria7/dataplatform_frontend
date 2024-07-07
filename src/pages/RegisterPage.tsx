@@ -1,23 +1,22 @@
-// src/pages/RegisterPage.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
-  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');  // 使用电子邮件
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // 防止表单默认提交行为
 
     try {
-      const response = await fetch('http://127.0.0.1:4523/m1/4194391-0-default/auth/signup', {
+      const response = await fetch('http://localhost:5000/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, phone, password }),
+        body: JSON.stringify({ username, email, password }), // 发送正确的数据结构
       });
       const data = await response.json();
 
@@ -47,17 +46,16 @@ const RegisterPage: React.FC = () => {
                      placeholder="用户名" value={username} onChange={e => setUsername(e.target.value)} />
             </div>
             <div>
-              <label htmlFor="phone" className="sr-only">手机号</label>
-              <input id="phone" name="phone" type="tel" autoComplete="tel" required 
-                     pattern='^1[3456789]\d{9}$'
+              <label htmlFor="email" className="sr-only">电子邮件</label>
+              <input id="email" name="email" type="email" autoComplete="email" required 
                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
-                     placeholder="手机号" value={phone} onChange={e => setPhone(e.target.value)} />
+                     placeholder="电子邮件" value={email} onChange={e => setEmail(e.target.value)} />
             </div>
             <div>
               <label htmlFor="password" className="sr-only">密码</label>
               <input id="password" name="password" type="password" autoComplete="new-password" required 
-                     minLength="8"
-                     maxLength="20"
+                     minLength={4}
+                     maxLength={20}
                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
                      placeholder="密码" value={password} onChange={e => setPassword(e.target.value)} />
             </div>
