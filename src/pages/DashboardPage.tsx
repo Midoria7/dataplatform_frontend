@@ -11,11 +11,11 @@ export default function Dashboard() {
   return (
     <div className="bg-gray-100 min-h-screen p-5">
       <div className="max-w-6xl mx-auto"> 
-        <header className="flex justify-between items-center mb-10 mt-10">
+        <header className="w-[1000px] flex justify-between items-center mb-10 mt-10 mx-auto">
           <h1 className="text-5xl font-bold">Dashboard</h1>
           <UserProfileDropdown />
         </header>
-        <div className="flex justify-between gap-5">
+        <div className="w-[1000px] h-[620px] flex justify-between gap-5 mx-auto">
           {/* 数据区域 */}
           <DataInfo />
 
@@ -23,7 +23,7 @@ export default function Dashboard() {
           <VideoMonitor />
 
           {/* 云台控制区域 */}
-          <ControlPanel />
+          {/* <ControlPanel /> */}
         </div>
       </div>
     </div>
