@@ -1,4 +1,3 @@
-// src/pages/DashboardPage.tsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -6,6 +5,7 @@ import ControlPanel from '../components/ControlPanel';
 import VideoMonitor from '../components/VideoMonitor';
 import UserProfileDropdown from '../components/UserProfileDropdown';
 import DataInfo from '../components/DataInfo';
+import MapLocation from '../components/MapLocation';
 
 export default function Dashboard() {
   return (
@@ -24,6 +24,9 @@ export default function Dashboard() {
 
           {/* 云台控制区域 */}
           {/* <ControlPanel /> */}
+        </div>
+        <div className="w-[1000px] mt-10 mx-auto">
+          <MapLocation />
         </div>
       </div>
     </div>
